@@ -4,9 +4,6 @@ describe CarrierWave::Uploader do
 
   before :all do
 
-    class SerializationSpec_Avatar_Uploader < CarrierWave::Uploader::Base
-    end
-
     class SerializationSpec_Avatar
       extend CarrierWave::Mount
       attr_accessor :name

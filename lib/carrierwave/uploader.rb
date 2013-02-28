@@ -16,6 +16,7 @@ require "carrierwave/uploader/versions"
 require "carrierwave/uploader/default_url"
 
 require "carrierwave/uploader/serialization"
+require "carrierwave/uploader/marshalling"
 
 module CarrierWave
 
@@ -57,6 +58,7 @@ module CarrierWave
       include CarrierWave::Uploader::Versions
       include CarrierWave::Uploader::DefaultUrl
       include CarrierWave::Uploader::Serialization
+      include CarrierWave::Uploader::Marshalling
     end # Base
 
   end # Uploader

@@ -39,7 +39,8 @@ describe CarrierWave::Uploader do
       end
 
       cached_instance.name.should == "hal"
-
+      cached_instance.picture.should be_a SerializationSpec_Avatar_Uploader
+      cached_instance.picture.famous.should be_a SerializationSpec_Avatar_Uploader
     end
   end
 end

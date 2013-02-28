@@ -6,9 +6,18 @@ describe CarrierWave::Uploader do
 
     class SerializationSpec_Avatar
       extend CarrierWave::Mount
-      attr_accessor :name
+
+      attr_accessor :name, :value
       mount_uploader :picture do
 
+      end
+
+      def marshal_dump
+        [ name, value ]
+      end
+
+      def marshal_load(data)
+        @name, @value = data
       end
     end
 
@@ -23,7 +32,8 @@ describe CarrierWave::Uploader do
 
       cache.fetch "key" do
         image = SerializationSpec_Avatar.new
-        image.name = "hal"
+        image.name = "name"
+        image.value = "value"
         image.picture
         image
       end
@@ -35,8 +45,9 @@ describe CarrierWave::Uploader do
         # not reached
       end
 
-      cached_instance.name.should == "hal"
-
+      cached_instance.name.should == "name"
+      cached_instance.value.should == "value"
+      cached_instance.picture.should_not be_nil
     end
   end
 end
